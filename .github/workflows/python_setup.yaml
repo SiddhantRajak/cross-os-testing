@@ -1,28 +1,13 @@
-name: python-setup
-
-on: [push]
+name: SECRET
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  python-job:
+  use-secret:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-
-      - name: Install Dependencies
-        run: pip install pytest flake8
-
-      - name: Check Python Version
-        run: python --version
-
-      - name: Flake8 Linting
-        run: flake8 --version
-
-      - name: Pytest Check
-        run: pytest --version
-        
-
+      - name: Print a message
+        run: echo "The secret is \${{ secrets.SECRET }}"
