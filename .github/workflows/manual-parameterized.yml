@@ -1,46 +1,46 @@
-name: Parameterized Manual Workflow
+# name: Parameterized Manual Workflow
 
-on:
-  workflow_dispatch:
-    inputs:
-      application_name:
-        description: "Application name"
-        required: true
-        type: string
-      run_validation:
-        description: "Run validation"
-        required: true
-        type: boolean
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       application_name:
+#         description: "Application name"
+#         required: true
+#         type: string
+#       run_validation:
+#         description: "Run validation"
+#         required: true
+#         type: boolean
 
-jobs:
-  validate:
-    runs-on: ubuntu-latest
+# jobs:
+#   validate:
+#     runs-on: ubuntu-latest
 
-    outputs:
-      validation_status: ${{ steps.validate.outputs.validation_status }}
+#     outputs:
+#       validation_status: ${{ steps.validate.outputs.validation_status }}
 
-    steps:
-      - name: Print inputs
-        run: |
-          echo "Application: ${{ github.event.inputs.application_name }}"
-          echo "Run Validation: ${{ github.event.inputs.run_validation }}"
+#     steps:
+#       - name: Print inputs
+#         run: |
+#           echo "Application: ${{ github.event.inputs.application_name }}"
+#           echo "Run Validation: ${{ github.event.inputs.run_validation }}"
 
-      - name: Validate
-        id: validate
-        run: |
-          if [ "${{ github.event.inputs.run_validation }}" = "true" ]; then
-            echo "validation_status=success" >> "$GITHUB_OUTPUT"
-          else
-            echo "validation_status=skipped" >> "$GITHUB_OUTPUT"
-          fi
+#       - name: Validate
+#         id: validate
+#         run: |
+#           if [ "${{ github.event.inputs.run_validation }}" = "true" ]; then
+#             echo "validation_status=success" >> "$GITHUB_OUTPUT"
+#           else
+#             echo "validation_status=skipped" >> "$GITHUB_OUTPUT"
+#           fi
 
-  summary:
-    needs: validate
-    if: needs.validate.outputs.validation_status == 'success'
-    runs-on: ubuntu-latest
+#   summary:
+#     needs: validate
+#     if: needs.validate.outputs.validation_status == 'success'
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Summary
-        run: |
-          echo "Validation passed."
-          echo "Workflow completed successfully for ${{ github.event.inputs.application_name }}"
+#     steps:
+#       - name: Summary
+#         run: |
+#           echo "Validation passed."
+#           echo "Workflow completed successfully for ${{ github.event.inputs.application_name }}"
