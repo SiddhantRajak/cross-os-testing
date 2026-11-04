@@ -1,22 +1,22 @@
-name: Multi Environment Deployment
-on:
-  workflow_dispatch: 
-    inputs:
-      environment:
-        description: "Select deployment environment"
-        required: true
-        default: dev
-        type: choice
-        options:
-          - dev
-          - staging
-          - prod
+# name: Multi Environment Deployment
+# on:
+#   workflow_dispatch: 
+#     inputs:
+#       environment:
+#         description: "Select deployment environment"
+#         required: true
+#         default: dev
+#         type: choice
+#         options:
+#           - dev
+#           - staging
+#           - prod
         
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Deploy
-        run: echo "Deploying to ${{ github.event.inputs.environment }}"
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Deploy
+#         run: echo "Deploying to ${{ github.event.inputs.environment }}"
 
