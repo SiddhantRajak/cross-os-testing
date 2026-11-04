@@ -1,4 +1,5 @@
-name: Manual-Workflow
+name: Manual Workflow Demo
+
 on:
   workflow_dispatch:
     inputs:
@@ -9,18 +10,12 @@ on:
       version:
         description: 'Release version'
         required: true
-jobs:
-  use-secret:
-    runs-on: ubuntu-latest
-    
 
-    steps:
-      - name: Print a message
-       jobs:
+jobs:
   demo:
     runs-on: ubuntu-latest
     steps:
       - name: Print input values
         run: |
           echo "Environment: ${{ github.event.inputs.environment }}"
-          echo "Version: ${{ github.event.inputs.version }}" run: echo "The secret is \${{ secrets.SECRET }}"
+          echo "Version: ${{ github.event.inputs.version }}"
